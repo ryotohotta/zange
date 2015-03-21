@@ -1,0 +1,9 @@
+!!!
+%html
+%head
+	%title zange
+	= stylesheet_link_tag 'application', meta: 'all', 'data-turbolinks-track' => true
+	= javascript_include_tag 'application', 'data-turbolinks-track' => true
+	= csrf_meta_tags
+	%body#registrations
+	= yield
