@@ -1,0 +1,13 @@
+= form_for @completion do |f|
+  - if @completion.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@completion.errors.count, "error")} prohibited this completion from being saved:"
+      %ul
+        - @completion.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :article_id
+    = f.number_field :article_id
+  .actions
+    = f.submit 'Save'

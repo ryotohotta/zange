@@ -1,0 +1,31 @@
+%h1 Listing articles
+
+%table
+  %thead
+    %tr
+      %th User
+      %th Title
+      %th Content
+      %th Category
+      %th Solution
+      %th Deadline
+      %th
+      %th
+      %th
+
+  %tbody
+    - @articles.each do |article|
+      %tr
+        %td= article.user_id
+        %td= article.title
+        %td= article.content
+        %td= article.category
+        %td= article.solution
+        %td= article.deadline
+        %td= link_to 'Show', article
+        %td= link_to 'Edit', edit_article_path(article)
+        %td= link_to 'Destroy', article, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Article', new_article_path

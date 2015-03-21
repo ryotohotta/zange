@@ -1,0 +1,23 @@
+%h1 Listing cheers
+
+%table
+  %thead
+    %tr
+      %th User
+      %th Article
+      %th
+      %th
+      %th
+
+  %tbody
+    - @cheers.each do |cheer|
+      %tr
+        %td= cheer.user_id
+        %td= cheer.article_id
+        %td= link_to 'Show', cheer
+        %td= link_to 'Edit', edit_cheer_path(cheer)
+        %td= link_to 'Destroy', cheer, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Cheer', new_cheer_path
