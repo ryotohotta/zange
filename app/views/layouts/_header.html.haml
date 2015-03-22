@@ -1,0 +1,16 @@
+%nav#header
+	%ul.content
+		.float-left
+			%li.header-left
+				= link_to 'Zange', root_url, class: "header-brand"
+		.clear
+		.float-right
+			- if logged_in?
+				.dropdown-menu.float-left
+					%i.fa.fa-bars
+					%ul
+						%li= link_to "mypage", current_user
+						%li= link_to "設定", settings_path
+						%li= link_to "ログアウト", sessions_path, method: :delete
+			- else
+				%li= link_to "ログイン"
