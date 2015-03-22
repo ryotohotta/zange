@@ -1,15 +1,42 @@
 #contents
-  #my-timeline
+  .my-timeline
     .my-timeline-header.table
       - if logged_in?
-        %ul.my-timeline-header-left.table-cell.middle
+        %ul.table-cell.middle
           .float-left
             %li.media-theme
-              #{current_user.name}のzangeとchigiri
+              #{current_user.name} のzangeとchigiri
           .float-right
-            %li.media-new-zange.center
-              = link_to 'New Zange', new_article_path
+            .red-btn
+              %li.media-new-zange.center
+                = link_to 'New Zange', new_article_path
           .clear
+
+    .my-timeline-items
+      - @articles.each do |article|
+        .my-timeline-item
+          .media.table
+            .media-left.table-cell.center
+              = current_user.name
+            .media-body.table-cell.middle
+              .media-body-zange
+                .media-category
+                  Zange
+                %p= article.title
+              .media-body-chigiri
+                .media-category
+                  Chigiri
+                %p= article.solution
+            .media-right.float-right.table-cell.middle
+              .media-next
+                =link_to '続きを読む', article
+              .red-btn.table
+                .media-done.table-cell.middle.center
+                  今日はできた！
+
+
+
+
 
             
 
