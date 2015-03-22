@@ -7,9 +7,10 @@
             %li.media-theme
               #{current_user.name} のzangeとchigiri
           .float-right
-            .red-btn
-              %li.media-new-zange.center
-                = link_to 'New Zange', new_article_path
+            = link_to new_article_path do
+              .red-btn
+                %li.media-new-zange.center
+                  New Zange
           .clear
 
     .my-timeline-items
@@ -27,10 +28,15 @@
                 .media-category
                   Chigiri
                 %p= article.solution
-            .media-right.float-right.center
-              .media-next
+            %ul.media-right.float-right.center
+              %li.media-next
                 =link_to '続きを読む', article
-              .red-btn.table
+              %li.media-nums
+                %i.fa.fa-bullhorn.float-left
+                  0
+                %i.fa.fa-check-square.float-left
+                  0
+              %li.red-btn.table
                 .media-done.table-cell.middle.center
                   今日はできた！
             .clear

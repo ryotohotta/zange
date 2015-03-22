@@ -6,23 +6,23 @@
         - @article.errors.full_messages.each do |msg|
           %li= msg
 
+  -# .field
+  -#   = f.label :user_id
+  -#   = f.number_field :user_id
   .field
-    = f.label :user_id
-    = f.number_field :user_id
-  .field
-    = f.label :title
+    = f.label :title, "懺悔したいあやまちにタイトルをつけてください。（30字以内）"
     = f.text_field :title
   .field
-    = f.label :content
+    = f.label :content, "懺悔したいあやまちの内容を書いてください。"
     = f.text_area :content
   .field
-    = f.label :category
+    = f.label :category, "懺悔のジャンル/シチュエーションを選んでください。"
     = f.text_field :category
   .field
-    = f.label :solution
+    = f.label :solution, "今後、Chigiriとしてどんな対策や行動を約束しますか？毎日できることを書いてください。"
     = f.text_field :solution
   .field
-    = f.label :deadline
+    = f.label :deadline, "そのChigiriをいつまでつづけますか？"
     = f.datetime_select :deadline
   .actions
-    = f.submit 'Save'
+    = f.submit "決意する"
