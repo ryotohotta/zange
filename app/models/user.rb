@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
   authenticates_with_sorcery!
 
+  has_many :articles, dependent: :destroy
+
   validates :name, length: { maximum: 140 }
   validates :bio, length: { maximum: 200 }
   validates :email, presence: true, uniqueness: { case_sentensive: false }

@@ -10,7 +10,7 @@
 						%i.fa.fa-bars
 						%ul
 							%li= link_to "mypage", current_user
-							%li= link_to "設定", settings_path
+							%li= link_to "設定"
 							%li= link_to "ログアウト", sessions_path, method: :delete
 				- else
 					.signup= link_to "ログイン", new_sessions_path
