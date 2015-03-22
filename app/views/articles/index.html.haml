@@ -1,3 +1,18 @@
+#contents
+  #my-timeline
+    .my-timeline-header.table
+      - if logged_in?
+        %ul.my-timeline-header-left.table-cell.middle
+          .float-left
+            %li.media-theme
+              #{current_user.name}のzangeとchigiri
+          .float-right
+            %li.media-new-zange.center
+              = link_to 'New Zange', new_article_path
+          .clear
+
+            
+
 %h1 Listing articles
 
 %table
@@ -28,4 +43,3 @@
 
 %br
 
-= link_to 'New Article', new_article_path
