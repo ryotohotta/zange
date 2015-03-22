@@ -1,2 +1,21 @@
-%h1 Sessions#new
-%p Find me in app/views/sessions/new.html.haml
+#sessions
+	#sessions-new
+		.login-content
+			- if action_name == "create"
+				.alert.alert-danger
+					メールアドレスまたはパスワードが正しくありません
+
+			= form_for @user, url:sessions_path, method: :post do |f|
+				%h3
+					ログイン
+				.form-body
+					.form-group
+						= f.label :email, "メールアドレス:hello@zange.com", class: "control-label"
+						= f.text_field :email, class: "form-control"
+					.form-group
+						= f.label :password, "パスワード:4文字以上", class: "control-label"
+						= f.password_field :password, class: "form-control"
+					= f.submit "ログイン", class: "red-btn"
+					= link_to root_path, class: "signup" do
+						会員登録する
+					.clear
