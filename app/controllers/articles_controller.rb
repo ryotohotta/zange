@@ -1,4 +1,5 @@
 class ArticlesController < ApplicationController
+  before_filter :require_login, except: [:index]
   before_action :set_article, only: [:show, :edit, :update, :destroy]
 
   # GET /articles
@@ -25,6 +26,7 @@ class ArticlesController < ApplicationController
   # POST /articles.json
   def create
     @article = Article.new(article_params)
+    @article.user = current_user
 
     respond_to do |format|
       if @article.save
@@ -69,6 +71,6 @@ class ArticlesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def article_params
-      params.require(:article).permit(:user_id, :title, :content, :category, :solution, :deadline)
+      params.require(:article).permit(:title, :content, :category, :solution, :deadline)
     end
 end

@@ -7,6 +7,7 @@ class RegistrationsController < ApplicationController
     @user = User.new(params_user)
     
     if @user.save
+      login(@user.email, @user.password)
       redirect_to root_url
     else
       render :new
