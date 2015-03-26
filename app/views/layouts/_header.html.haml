@@ -6,12 +6,10 @@
 		.float-right
 			%li.header-right
 				- if logged_in?
-					.dropdown-menu
-						%i.fa.fa-bars
-						%ul
-							%li= link_to "mypage", current_user
-							%li= link_to "設定"
-							%li= link_to "ログアウト", sessions_path, method: :delete
+					%ul.menu
+						%li= link_to "mypage", current_user
+						%li= link_to "設定"
+						%li= link_to "ログアウト", sessions_path, method: :delete
 				- else
 					.signup= link_to "ログイン", new_sessions_path
 			.clear

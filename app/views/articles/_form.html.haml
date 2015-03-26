@@ -10,19 +10,26 @@
   -#   = f.label :user_id
   -#   = f.number_field :user_id
   .field
-    = f.label :title, "懺悔したいあやまちにタイトルをつけてください。（30字以内）"
-    = f.text_field :title
+    = f.label :title, "懺悔したいあやまちにタイトルをつけてください。（30字以内）", class: "control-label"
+    %div
+      = f.text_field :title, class: "form-control"
   .field
-    = f.label :content, "懺悔したいあやまちの内容を書いてください。"
-    = f.text_area :content
+    = f.label :content, "懺悔したいあやまちの内容を書いてください。", class: "control-label"
+    %div
+      = f.text_area :content, class: "form-control zange-form-content"
   .field
-    = f.label :category, "懺悔のジャンル/シチュエーションを選んでください。"
-    = f.text_field :category
+    = f.label :category, "懺悔のジャンル/シチュエーションを選んでください。", class: "control-label"
+    %div
+      = f.select :category do
+        - [['仕事', "work"], ['学校', "school"], ['恋愛', "love"], ['家族', "family"], ['友人', "friend"], ['自分自身', "self"]].each do |c|
+          = content_tag(:option, c.first, value: c.last)
   .field
-    = f.label :solution, "今後、Chigiriとしてどんな対策や行動を約束しますか？毎日できることを書いてください。"
-    = f.text_field :solution
+    = f.label :solution, "今後、Chigiriとしてどんな対策や行動を約束しますか？毎日できることを書いてください。", class: "control-label"
+    %div
+      = f.text_field :solution, class: "form-control"
   .field
-    = f.label :deadline, "そのChigiriをいつまでつづけますか？"
-    = f.datetime_select :deadline
+    = f.label :deadline, "そのChigiriをいつまでつづけますか？", class: "control-label"
+    %div
+      = f.datetime_select :deadline, class: "form-control"
   .actions
     = f.submit "決意する"

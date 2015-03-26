@@ -1,5 +1,5 @@
 #contents
-  .my-timeline
+  #my-timeline
     .my-timeline-header.table
       - if logged_in?
         %ul.table-cell.middle
@@ -17,9 +17,9 @@
       - @articles.each do |article|
         .my-timeline-item
           .media.table
-            .media-left.table-cell.center
+            .media-name.center
               = current_user.name
-            .media-body.table-cell.middle
+            .media-body.middle
               .media-body-zange
                 .media-category
                   Zange
@@ -28,52 +28,21 @@
                 .media-category
                   Chigiri
                 %p= article.solution
-            .media-right.float-right.center
-              .media-next
+            .media-bottom
+              .media-next.center
                 =link_to '続きを読む', article
-              .media-nums
+              .red-btn.float-left
+                .media-done
+                  今日はできた！
+              .media-nums.float-right
                 %i.fa.fa-bullhorn.float-left
                   0
                 %i.fa.fa-check-square.float-left
                   0
-              .red-btn.table
-                .media-done.table-cell.middle.center
-                  今日はできた！
             .clear
 
 
 
 
 
-            
-
-%h1 Listing articles
-
-%table
-  %thead
-    %tr
-      %th User
-      %th Title
-      %th Content
-      %th Category
-      %th Solution
-      %th Deadline
-      %th
-      %th
-      %th
-
-  %tbody
-    - @articles.each do |article|
-      %tr
-        %td= article.user_id
-        %td= article.title
-        %td= article.content
-        %td= article.category
-        %td= article.solution
-        %td= article.deadline
-        %td= link_to 'Show', article
-        %td= link_to 'Edit', edit_article_path(article)
-        %td= link_to 'Destroy', article, :method => :delete, :data => { :confirm => 'Are you sure?' }
-
-%br
-
+      
