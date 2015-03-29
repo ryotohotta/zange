@@ -1,32 +1,22 @@
-%p#notice= notice
-
-%p
-  %b Name:
-  = @user.name
-%p
-  %b Email:
-  = @user.email
-%p
-  %b Bio:
-  = @user.bio
-
 #contents
   #my-timeline
     .my-timeline-header.table
       - if logged_in?
         %ul.table-cell.middle
-          .float-left
-            %li.media-theme
-              #{current_user.name} のzangeとchigiri
-          .float-right
-            = link_to new_article_path do
-              .red-btn
-                %li.media-new-zange.center
-                  New Zange
-          .clear
+          %li.media-theme.float-left
+            =link_to 'みんなのzangeとchigiri', articles_path
+          %li.media-theme.float-left
+            #{current_user.name} のzangeとchigiri
+          - if current_user.id == @user.id
+            .float-right
+              = link_to new_article_path do
+                .red-btn
+                  .media-new-zange.center
+                    New Zange
+        .clear
 
     .my-timeline-items
-      = div_for current_user.articles, class: "my-timeline-item" do |article|
+      = div_for @user.articles, class: "my-timeline-item" do |article|
         .media.table
           .media-name.center
             = link_to article.user.name, user_path(article.user)
@@ -43,8 +33,12 @@
             .media-next.center
               =link_to '続きを読む', article
             .red-btn.float-left
-              .media-done
-                今日はできた！
+              - if current_user.id == @user.id
+                .media-done
+                  今日はできた！
+              - else
+                .media-cheer
+                  応援する！
             .media-nums.float-right
               %i.fa.fa-bullhorn.float-left
                 0

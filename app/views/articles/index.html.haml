@@ -7,8 +7,7 @@
           %li.media-theme.float-left
             みんなのzangeとchigiri
           %li.media-theme.float-left
-            = link_to current_user.name, user_path(current_user)
-            のzangeとchigiri
+            =link_to "#{current_user.name}のzangeとchigiri", current_user
         .clear
     .timeline-items
       = div_for @articles, class: "timeline-item" do |article|
@@ -28,8 +27,11 @@
             .media-next.center
               =link_to '続きを読む', article
             .red-btn.float-left
-              .media-done
-                応援する！
+              .media-cheer
+                - if article.cheered_by? current_user
+                  = link_to "応援した", article_cheers_path, method: :delete
+                - else
+                  = link_to "応援する！", article_cheers_path, method: :post
             .media-nums.float-right
               %i.fa.fa-bullhorn.float-left
                 0
