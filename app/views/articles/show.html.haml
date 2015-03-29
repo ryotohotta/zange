@@ -1,27 +1,39 @@
 %p#notice= notice
 
-%p
-  %b User:
-  = @article.user_id
-%p
-  %b User-name
-  = @article.user.name
-%p
-  %b Title:
-  = @article.title
-%p
-  %b Content:
-  = @article.content
-%p
-  %b Category:
-  = @article.category
-%p
-  %b Solution:
-  = @article.solution
-%p
-  %b Deadline:
-  = @article.deadline
+#contents
+  #zange-detail
+    .detail-header.table
+      - if logged_in?
+        %ul.table-cell.middle
+          .float-left
+            %li.media-theme
+              #{current_user.name} のzangeとchigiri
+          .clear
 
-= link_to 'Edit', edit_article_path(@article)
-\|
-= link_to 'Back', articles_path
+    .detail-item
+      .media
+        .media-category
+          Zange
+        .media-title
+          %p= @article.title
+        .media-category
+          %p 
+            カテゴリ:
+            = @article.category
+        .media-content
+          %p
+            = @article.content
+            = raw hbr(@article.content)
+        .media-category
+          Chigiri
+        .media-content
+          %p
+            = @article.solution
+        .media-date
+          %p
+            = @article.deadline
+            までのchigiri
+
+      = link_to 'Edit', edit_article_path(@article)
+      \|
+      = link_to 'Back', articles_path

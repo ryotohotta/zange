@@ -46,4 +46,34 @@ group :development, :test do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
 end
+group :test, :development do
+  gem 'pry-rails'
+  gem 'pry-doc'
+  gem 'pry-stack_explorer'
+
+  if RUBY_VERSION >= '2.0.0'
+    gem 'pry-byebug'
+  else
+    gem 'pry-debugger'
+    gem 'pry-remote'
+  end
+
+  gem 'hirb'
+  gem 'hirb-unicode'
+  gem 'tapp'
+  gem 'awesome_print'
+  gem 'quiet_assets'
+  gem 'annotate', git: 'git://github.com/ctran/annotate_models.git'
+  gem 'timecop'
+
+  gem 'web-console', '~> 2.0'
+  gem 'meta_request'
+  gem 'better_errors'
+  gem 'binding_of_caller'
+  # gem 'xray-rails'
+  # gem 'rack-mini-profiler'
+  gem 'rails-footnotes'
+end
+
+
 

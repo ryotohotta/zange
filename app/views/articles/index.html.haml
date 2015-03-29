@@ -14,35 +14,66 @@
           .clear
 
     .my-timeline-items
-      - @articles.each do |article|
-        .my-timeline-item
-          .media.table
-            .media-name.center
-              = current_user.name
-            .media-body.middle
-              .media-body-zange
-                .media-category
-                  Zange
-                %p= article.title
-              .media-body-chigiri
-                .media-category
-                  Chigiri
-                %p= article.solution
-            .media-bottom
-              .media-next.center
-                =link_to '続きを読む', article
-              .red-btn.float-left
-                .media-done
-                  今日はできた！
-              .media-nums.float-right
-                %i.fa.fa-bullhorn.float-left
-                  0
-                %i.fa.fa-check-square.float-left
-                  0
-            .clear
+      = div_for current_user.articles, class: "my-timeline-item" do |article|
+        .media.table
+          .media-name.center
+            = link_to article.user.name, user_path(article.user)
+          .media-body.middle
+            .media-body-zange
+              .media-category
+                Zange
+              %p= article.title
+            .media-body-chigiri
+              .media-category
+                Chigiri
+              %p= article.solution
+          .media-bottom
+            .media-next.center
+              =link_to '続きを読む', article
+            .red-btn.float-left
+              .media-done
+                今日はできた！
+            .media-nums.float-right
+              %i.fa.fa-bullhorn.float-left
+                0
+              %i.fa.fa-check-square.float-left
+                0
+          .clear
+    .my-timeline-header.table
+      - if logged_in?
+        %ul.table-cell.middle
+          .float-left
+            %li.media-theme
+              みんなのzangeとchigiri
+          .clear
+    .my-timeline-items
+      = div_for @articles, class: "my-timeline-item" do |article|
+        .media.table
+          .media-name.center
+            = link_to article.user.name, user_path(article.user)
+          .media-body.middle
+            .media-body-zange
+              .media-category
+                Zange
+              %p= article.title
+            .media-body-chigiri
+              .media-category
+                Chigiri
+              %p= article.solution
+          .media-bottom
+            .media-next.center
+              =link_to '続きを読む', article
+            .red-btn.float-left
+              .media-done
+                応援する！
+            .media-nums.float-right
+              %i.fa.fa-bullhorn.float-left
+                0
+              %i.fa.fa-check-square.float-left
+                0
+          .clear
 
 
 
 
-
-      
+    
