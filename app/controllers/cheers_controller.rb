@@ -24,11 +24,12 @@ class CheersController < ApplicationController
   # POST /cheers
   # POST /cheers.json
   def create
-    @cheer = Cheer.new(cheer_params)
+    @article = Article.find(params[:article_id])
+    @cheer = Cheer.new(user_id: current_user.id, article_id: @article.id)
 
     respond_to do |format|
       if @cheer.save
-        format.html { redirect_to @cheer, notice: 'Cheer was successfully created.' }
+        format.html { redirect_to  articles_path, notice: 'Cheer was successfully created.' }
         format.json { render :show, status: :created, location: @cheer }
       else
         format.html { render :new }

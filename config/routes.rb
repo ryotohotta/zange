@@ -4,13 +4,14 @@ Rails.application.routes.draw do
   resource :sessions, only: [:new, :create, :destroy]
 
   root to: 'registrations#new'
-  resources :cheers
 
-  resources :completions
 
   resources :comments
 
-  resources :articles
+  resources :articles do
+    resources :cheers
+    resources :completions
+  end
 
   resources :users
 
