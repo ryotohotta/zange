@@ -24,11 +24,12 @@ class CompletionsController < ApplicationController
   # POST /completions
   # POST /completions.json
   def create
-    @completion = Completion.new(completion_params)
+    @article = Article.find(params[:article_id])
+    @completion = Completion.new(article_id: @article.id)
 
     respond_to do |format|
       if @completion.save
-        format.html { redirect_to @completion, notice: 'Completion was successfully created.' }
+        format.html { redirect_to :back, notice: 'Completion was successfully created.' }
         format.json { render :show, status: :created, location: @completion }
       else
         format.html { render :new }

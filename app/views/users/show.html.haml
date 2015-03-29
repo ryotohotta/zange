@@ -32,18 +32,21 @@
           .media-bottom
             .media-next.center
               =link_to '続きを読む', article
-            .red-btn.float-left
-              - if current_user.id == @user.id
-                .media-done
-                  今日はできた！
-              - else
-                .media-cheer
-                  応援する！
+            - if current_user.id == @user.id
+              =link_to article_completions_path(article), method: :post do
+                .red-btn.float-left
+                  .media-done
+                    今日はできた！
+            - else
+              =link_to article_cheers_path(article), method: :post do
+                .red-btn.float-left
+                  .media-cheer
+                    応援する!
             .media-nums.float-right
               %i.fa.fa-bullhorn.float-left
-                0
+                = article.cheers.length
               %i.fa.fa-check-square.float-left
-                0
+                = article.completions.length
           .clear
 
 = link_to 'Edit', edit_user_path(@user)
