@@ -8,7 +8,7 @@ class RegistrationsController < ApplicationController
     
     if @user.save
       login(@user.email, @user.password)
-      redirect_to root_url
+      redirect_to new_sessions_path, notice: "サインインしました"
     else
       render :new
     end

@@ -28,6 +28,9 @@
 				= f.password_field :password_confirmation, class: "form-control"
 			.field
 				= f.submit "zange開始"
+		%p
+			アカウントをお持ちのかたはこちらから
+			= link_to "ログイン", new_sessions_path, class: "login"
 
 #contents
 	.explanations

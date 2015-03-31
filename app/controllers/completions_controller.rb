@@ -29,7 +29,7 @@ class CompletionsController < ApplicationController
 
     respond_to do |format|
       if @completion.save
-        format.html { redirect_to :back, notice: 'Completion was successfully created.' }
+        format.html { redirect_to :back, notice: '明日からもがんばりましょう。' }
         format.json { render :show, status: :created, location: @completion }
       else
         format.html { render :new }

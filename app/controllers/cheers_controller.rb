@@ -29,7 +29,7 @@ class CheersController < ApplicationController
 
     respond_to do |format|
       if @cheer.save
-        format.html { redirect_to :back, notice: 'Cheer was successfully created.' }
+        format.html { redirect_to :back }
         format.json { render :show, status: :created, location: @cheer }
       else
         format.html { render :new }

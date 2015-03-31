@@ -8,6 +8,11 @@
             みんなのzangeとchigiri
           %li.media-theme.float-left
             =link_to "#{current_user.name}のzangeとchigiri", current_user
+          .float-right
+            = link_to new_article_path do
+              .red-btn
+                .media-new-zange.center
+                  New Zange
         .clear
     .timeline-items
       = div_for @articles, class: "timeline-item" do |article|
