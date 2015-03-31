@@ -4,9 +4,9 @@
       - if logged_in?
         %ul.table-cell.middle
           %li.media-theme.float-left
-            =link_to 'みんなのzangeとchigiri', articles_path
+            =link_to 'みんなのZangeとChigiri', articles_path
           %li.media-theme.float-left
-            #{current_user.name} のzangeとchigiri
+            #{current_user.name} のZangeとChigiri
           - if current_user.id == @user.id
             .float-right
               = link_to new_article_path do
@@ -23,10 +23,12 @@
           .media-body.middle
             .media-body-zange
               .media-category
-                Zange
+                =image_tag("sorry.png")
+                Zange                
               %p= article.title
             .media-body-chigiri
               .media-category
+                =image_tag("promise.png")
                 Chigiri
               %p= article.solution
           .media-bottom
