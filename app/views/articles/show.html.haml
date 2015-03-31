@@ -2,9 +2,9 @@
 
 #contents
   #zange-detail
-    .detail-header.table
+    .detail-header
       - if logged_in?
-        %ul.table-cell.middle
+        %ul.table
           %li.media-theme.float-left
             #{current_user.name} のzangeとchigiri
           %li.float-right
@@ -54,6 +54,33 @@
             = @article.cheers.length
           %i.fa.fa-check-square.float-left
             = @article.completions.length
+          %i.fa.fa-comment-o.float-left
+            = @article.comments.length
     = link_to articles_path do
       .media-back
         戻る
+
+
+  #comments
+    .comments-header
+      応援や共感のコメント一覧
+    .comments-wrapper
+      - if @article.comments.empty?
+        .comment
+          まだコメントはありません。
+      - @article.comments.each do |comment|
+        .comment
+          .comment-user
+            name:
+            = comment.user.name
+          .comment-content
+            = comment.content
+    .comment-form
+      = form_for ([@article, @article.comments.build]) do |f|
+        .field
+          = f.label :content, "応援や共感をコメントしてあげよう！"
+        .field
+          = current_user.name
+          = f.text_area :content, class: "form-control"
+        .actions.center
+          = f.submit 'コメントする', class: "comment-submit"

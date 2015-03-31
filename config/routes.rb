@@ -5,12 +5,10 @@ Rails.application.routes.draw do
 
   root to: 'registrations#new'
 
-
-  resources :comments
-
   resources :articles do
     resources :cheers
     resources :completions
+    resources :comments
   end
 
   resources :users

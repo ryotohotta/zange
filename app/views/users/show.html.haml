@@ -1,18 +1,21 @@
 #contents
   #my-timeline
-    .my-timeline-header.table
+    .my-timeline-header
       - if logged_in?
-        %ul.table-cell.middle
-          %li.media-theme.float-left
-            =link_to 'みんなのZangeとChigiri', articles_path
-          %li.media-theme.float-left
-            #{current_user.name} のZangeとChigiri
+        %ul
+          .float-left.table
+            = link_to articles_path do
+              %li.media-theme.table-cell.middle
+                みんなのZangeとChigiri
+            %li.media-theme.table-cell.middle.active
+              #{current_user.name} のZangeとChigiri
           - if current_user.id == @user.id
-            .float-right
-              = link_to new_article_path do
-                .red-btn
-                  .media-new-zange.center
-                    New Zange
+            .float-right.table
+              .table-cell.middle
+                = link_to new_article_path do
+                  .red-btn
+                    .media-new-zange.center
+                      New Zange
         .clear
 
     .my-timeline-items
@@ -51,4 +54,6 @@
                 = article.cheers.length
               %i.fa.fa-check-square.float-left
                 = article.completions.length
+              %i.fa.fa-comment-o.float-left
+                = article.comments.length
           .clear

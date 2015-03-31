@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
   has_many :articles, dependent: :destroy
   has_many :cheers, dependent: :destroy
   has_many :completions, dependent: :destroy
+  has_many :comments
 
   validates :name, length: { maximum: 140 }
   validates :bio, length: { maximum: 200 }

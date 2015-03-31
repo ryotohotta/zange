@@ -2,7 +2,10 @@
 	%ul.content
 		.float-left
 			%li.header-left
-				= link_to 'Zange', root_url, class: "header-brand"
+				- if logged_in?
+					= link_to 'Zange', current_user, class: "header-brand"
+				- else
+					= link_to 'Zange', root_url, class: "header-brand"
 		.float-right
 			%li.header-right
 				- if logged_in?
