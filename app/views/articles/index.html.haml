@@ -29,7 +29,8 @@
             =link_to article_cheers_path(article), method: :post do
               .red-btn.float-left
                 .media-cheer
-                  応援する
+                  %i.fa.fa-bullhorn
+                    応援する!
             .media-nums.float-right
               %i.fa.fa-bullhorn.float-left
                 = article.cheers.length

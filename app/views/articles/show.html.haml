@@ -5,9 +5,11 @@
     .detail-header.table
       - if logged_in?
         %ul.table-cell.middle
-          .float-left
-            %li.media-theme
-              #{current_user.name} のzangeとchigiri
+          %li.media-theme.float-left
+            #{current_user.name} のzangeとchigiri
+          %li.float-right
+            .btn-word
+            = link_to '編集する', edit_article_path(@article)
           .clear
 
     .detail-item
@@ -33,7 +35,24 @@
           %p
             = @article.deadline
             までのchigiri
-
-      = link_to 'Edit', edit_article_path(@article)
-      \|
-      = link_to 'Back', articles_path
+        .media-btn
+          - if current_user.id == @article.user_id
+            =link_to article_completions_path(@article), method: :post do
+              .red-btn.float-left
+                .media-done
+                  %i.fa.fa-check-square
+                    できた！
+          - else
+            =link_to article_cheers_path(@article), method: :post do
+              .red-btn.float-left
+                .media-cheer
+                  %i.fa.fa-bullhorn
+                    応援する!
+        .media-nums.float-right
+          %i.fa.fa-bullhorn.float-left
+            = @article.cheers.length
+          %i.fa.fa-check-square.float-left
+            = @article.completions.length
+    = link_to articles_path do
+      .media-back
+        戻る
