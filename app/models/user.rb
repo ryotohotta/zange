@@ -11,4 +11,19 @@ class User < ActiveRecord::Base
   validates :email, presence: true, uniqueness: { case_sentensive: false }
   validates :password, confirmation: true, length: { in: 4..24}, if: :password
   validates :password_confirmation, presence: true, if: :password
+
+  def self.create_with_omniauth auth
+    create! do |user|
+      user.provider = auth["provider"]
+      user.id = auth["uid"]
+      user.name = auth["info"]["nickname"]
+      user.token = auth["credentials"]['token']
+      user.secret = auth['credentials']['secret']
+    end
+  end
+
+  def client
+    Twitter::Client.new(oauth_token: token, oauth_token_secret: secret)
+  end
+
 end
