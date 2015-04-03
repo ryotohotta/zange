@@ -1,3 +1,10 @@
+-if signed_in?
+  twitter connected
+  =link_to "Sign Out", "/signout"
+-else
+  =link_to "Connect with Twitter", "/auth/twitter"
+
+
 #contents
   #my-timeline
     .my-timeline-header

@@ -11,6 +11,11 @@ Rails.application.routes.draw do
     resources :comments
   end
 
+  get "tweet/input"
+  post "tweet/update"
+  get "/auth/:provider/callback" => "sessions#callback"
+  get "/signout" => "sessions#remove"
+
   resources :users
 
   # The priority is based upon order of creation: first created -> highest priority.

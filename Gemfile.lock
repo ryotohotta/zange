@@ -261,7 +261,6 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   meta_request
-  omniauth
   omniauth-twitter
   pg
   pry-byebug
