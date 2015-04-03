@@ -19,18 +19,20 @@ class SessionsController < ApplicationController
     auth = request.env["omniauth.auth"]
     session[:oauth_token] = auth.credentials.token
     session[:oauth_token_secret] = auth.credentials.secret
-    redirect_to current_user, :notice => "Signed in!"
+    redirect_to edit_user_path(current_user), :notice => "twitterと連携しました。"
   end
 
   def remove
     session[:oauth_token] = nil
     session[:oauth_token_secret] = nil
-    redirect_to current_user, :notice => "Signed out!"
+    redirect_to edit_user_path(current_user), :notice => "twitterとの連携を解除しました。"
   end
 
   def destroy
     logout
     session[:user_id] = nil
+    session[:oauth_token] = nil
+    session[:oauth_token_secret] = nil
     redirect_to root_url
   end
 

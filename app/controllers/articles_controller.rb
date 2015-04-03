@@ -28,6 +28,15 @@ class ArticlesController < ApplicationController
   def create
     @article = Article.new(article_params)
     @article.user = current_user
+    if @article.save
+      client = Twitter::REST::Client.new do |config|
+        config.consumer_key         = "jFB4VEVespxHwAq7TD5lulCrE"
+        config.consumer_secret      = "pwd5dzxoy3crKdncAVsGGDpl4hgdY7cVm2HI8ZzWZukihftqhE"
+        config.access_token         = session[:oauth_token]
+        config.access_token_secret  = session[:oauth_token_secret]
+      end
+      client.update("zangeをして、chigiriを結びました。zange.co")
+    end
 
     respond_to do |format|
       if @article.save

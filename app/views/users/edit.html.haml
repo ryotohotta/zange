@@ -3,5 +3,17 @@
     設定
 
   = render 'form'
+  -if signed_in?
+    %p
+      現在、twitterとアカウントを連携しています。
+      %br
+        ※Zangeを投稿すると、自動的にtweetが送信されます。
+    %p
+      =link_to "連携を外す場合はこちら", "/signout"
+  -else
+    %p
+      現在、twitterとアカウントを連携していません。
+    %p
+      =link_to "twitterと連携する場合はこちら", "/auth/twitter"
 
   = link_to 'mypageへ', @user

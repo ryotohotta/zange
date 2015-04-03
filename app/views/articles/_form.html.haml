@@ -31,5 +31,17 @@
     = f.label :deadline, "そのChigiriをいつまでつづけますか？", class: "control-label"
     %div
       = f.datetime_select :deadline, class: "form-control"
-  .actions
-    = f.submit "決意する"
+  -if signed_in?
+    %p
+      twitterと連携しています。
+      %br
+        Zangeを投稿すると、自動的にtweetが送信されて、より強いchigiriを結べます。
+        %br
+          ※Zangeの投稿の内容はtweetされませんので、ご安心ください。
+  -else
+    %p
+      twitterとアカウントを連携すると、より強いchigiriを結べます。
+    %p
+      =link_to "twitterと連携する場合はこちら", edit_user_path(current_user)
+  .actions.center
+    = f.submit "決意する", class: "red-btn"

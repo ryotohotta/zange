@@ -7,8 +7,9 @@ class RegistrationsController < ApplicationController
     @user = User.new(params_user)
     
     if @user.save
+      auto_login(@user)
       login(@user.email, @user.password)
-      redirect_to new_sessions_path, notice: "サインインしました"
+      redirect_to articles_url, notice: "サインインしました"
     else
       render :new
     end

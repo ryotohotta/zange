@@ -27,6 +27,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'omniauth-twitter'
 gem 'settingslogic'
+gem 'twitter'
 
 gem 'sorcery'
 gem 'haml-rails'
