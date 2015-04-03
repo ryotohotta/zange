@@ -26,9 +26,6 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
 
-    attr = params.require(:user).permit(:email, :password, :password_confirmation, :authentications_attributes)
-    @user = User.new(attr)
-
     respond_to do |format|
       if @user.save
         format.html { redirect_to @user, notice: 'User was successfully created.' }
@@ -72,6 +69,6 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:name, :email, :bio, :provider)
+      params.require(:user).permit(:name, :email, :bio)
     end
 end
