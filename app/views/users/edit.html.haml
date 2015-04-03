@@ -1,19 +1,23 @@
 #contents
-  %h3
-    設定
+  #edit
+    %h3
+      設定
 
-  = render 'form'
-  -if signed_in?
-    %p
-      現在、twitterとアカウントを連携しています。
-      %br
-        ※Zangeを投稿すると、自動的にtweetが送信されます。
-    %p
-      =link_to "連携を外す場合はこちら", "/signout"
-  -else
-    %p
-      現在、twitterとアカウントを連携していません。
-    %p
-      =link_to "twitterと連携する場合はこちら", "/auth/twitter"
+    = render 'form'
+    -if signed_in?
+      %p
+        現在、twitterとアカウントを連携しています。
+        %br
+          ※Zangeを投稿すると、自動的にtweetが送信されます。
+      %p
+        連携を外す場合は、
+        =link_to "こちら", "/signout"
+    -else
+      %p
+        現在、twitterとアカウントを連携していません。
+      %p
+        twitterと連携する場合は、下のボタンをクリック！
+      %p.red-btn.center.middle
+        =link_to "twitterと連携", "/auth/twitter"
 
-  = link_to 'mypageへ', @user
+    = link_to 'mypageへ', @user

@@ -1,8 +1,7 @@
 #top.center
+
 	%h1
-		昨日の自分にさよなら
-		%br
-			おはよう、あたらしい自分
+		前を向くための匿名掲示板 Zange
 	%h3
 		懺悔して、契りを結んで、実行する
 		%br
@@ -15,7 +14,7 @@
 
 		= form_for @user, url: registrations_path, method: :post do |f|
 			.field
-				= f.label :name, "Username", class: "control-label"
+				= f.label :name, "Username(匿名推奨)", class: "control-label"
 				= f.text_field :name, class: "form-control"
 			.field
 				= f.label :email, "Email", class: "control-label"
@@ -27,7 +26,7 @@
 				= f.label :password_confirmation, "パスワード(確認)", class: "control-label"
 				= f.password_field :password_confirmation, class: "form-control"
 			.field
-				= f.submit "zange開始"
+				= f.submit "zange開始", class: "red-btn"
 		%p
 			アカウントをお持ちのかたはこちらから
 			= link_to "ログイン", new_sessions_path, class: "login"
@@ -64,6 +63,30 @@
 				Twitterと連携すると、
 				%br より強いChigiriを結べます。
 		.clear
+	.regist-box
+		%h4
+			懺悔したいことがあるなら、今すぐはじめよう
+		- @user.errors.each do |attr, message|
+			.alert.alert-danger= message
+
+		= form_for @user, url: registrations_path, method: :post do |f|
+			.field
+				= f.label :name, "Username(匿名推奨)", class: "control-label"
+				= f.text_field :name, class: "form-control"
+			.field
+				= f.label :email, "Email", class: "control-label"
+				= f.text_field :email, class: "form-control"
+			.field
+				= f.label :password, "パスワード", class: "control-label"
+				= f.password_field :password, class: "form-control"
+			.field
+				= f.label :password_confirmation, "パスワード(確認)", class: "control-label"
+				= f.password_field :password_confirmation, class: "form-control"
+			.field
+				= f.submit "zange開始", class: "red-btn"
+		%p
+			アカウントをお持ちのかたはこちらから
+			= link_to "ログイン", new_sessions_path, class: "login"
 
 
 

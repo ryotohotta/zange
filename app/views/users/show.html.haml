@@ -9,6 +9,13 @@
                 みんなのZangeとChigiri
             %li.media-theme.table-cell.middle.active
               #{current_user.name} のZangeとChigiri
+          - unless signed_in?
+            .float-right.table
+              .table-cell.middle
+                = link_to "/auth/twitter" do
+                  .red-btn
+                    .media-new-zange.center
+                      twitterと連携
           - if current_user.id == @user.id
             .float-right.table
               .table-cell.middle
