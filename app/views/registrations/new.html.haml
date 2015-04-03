@@ -33,7 +33,7 @@
 			= link_to "ログイン", new_sessions_path, class: "login"
 		%p
 			twitterはこちら
-			= link_to "twiiterログイン", '/auth/twitter'
+			= link_to "twiiterログイン", auth_at_provider_path(:provider => :twitter)
 
 #contents
 	.explanations

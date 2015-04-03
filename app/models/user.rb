@@ -1,5 +1,11 @@
 class User < ActiveRecord::Base
-  authenticates_with_sorcery!
+  # attr_accessible :email, :password, :password_confirmation, :authentications_attributes
+  authenticates_with_sorcery! do |config|
+    config.authentications_class = Authentication
+  end
+
+  has_many :authentications, :dependent => :destroy
+  accepts_nested_attributes_for :authentications
 
   has_many :articles, dependent: :destroy
   has_many :cheers, dependent: :destroy
@@ -12,6 +18,8 @@ class User < ActiveRecord::Base
   validates :password, confirmation: true, length: { in: 4..24}, if: :password
   validates :password_confirmation, presence: true, if: :password
 
+  rand_password=('0'..'z').to_a.shuffle.first(8).join
+
   def self.create_with_omniauth auth
     create! do |user|
       user.provider = auth["provider"]
@@ -19,6 +27,7 @@ class User < ActiveRecord::Base
       user.name = auth["info"]["nickname"]
       user.token = auth["credentials"]['token']
       user.secret = auth['credentials']['secret']
+      user.password = rand_password
     end
   end
 
