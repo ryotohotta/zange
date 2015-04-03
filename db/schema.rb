@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150402083454) do
+ActiveRecord::Schema.define(version: 20150403043806) do
 
   create_table "articles", force: :cascade do |t|
     t.integer  "user_id"
@@ -22,6 +22,14 @@ ActiveRecord::Schema.define(version: 20150402083454) do
     t.datetime "deadline"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "authentications", force: :cascade do |t|
+    t.integer  "user_id",    null: false
+    t.string   "provider",   null: false
+    t.string   "uid",        null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "cheers", force: :cascade do |t|
@@ -45,8 +53,9 @@ ActiveRecord::Schema.define(version: 20150402083454) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "users", force: :cascade do |t|
-    t.string   "email",            null: false
+  create_table "users", id: false, force: :cascade do |t|
+    t.integer  "id",               limit: 100
+    t.string   "email",                        null: false
     t.string   "crypted_password"
     t.string   "salt"
     t.datetime "created_at"
@@ -59,5 +68,6 @@ ActiveRecord::Schema.define(version: 20150402083454) do
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
+  add_index "users", ["provider"], name: "index_users_on_provider"
 
 end
