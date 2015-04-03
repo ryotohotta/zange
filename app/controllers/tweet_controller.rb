@@ -5,8 +5,8 @@ class TweetController < ApplicationController
   def update
     if signed_in?
       client = Twitter::REST::Client.new do |config|
-        config.consumer_key         = "Qndxjz83ZuZHwm7LoN9VX0wzC"
-        config.consumer_secret      = "BmrtnW4g97au2Zn3TFPZKH09oyZjFOIOCmco0j7PY5JUikk43e"
+        config.consumer_key         = "IttJRoF9wqVKXPrzsEeoDK2fZ"
+        config.consumer_secret      = "DsMnQPNyfZoBi3z3rXMOFNoBII8imZjwztkGAoMFQyiAOqqYXP"
         config.access_token         = session[:oauth_token]
         config.access_token_secret  = session[:oauth_token_secret]
       end
