@@ -37,6 +37,13 @@ class UsersController < ApplicationController
     end
   end
 
+  def callback
+    auth = request.env["omniauth.auth"]
+    user[:oauth_token] = auth.credentials.token
+    user[:oauth_token_secret] = auth.credentials.secret
+    redirect_to root_url, :notice => "Signed in!"
+  end
+
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update

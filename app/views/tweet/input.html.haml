@@ -1,0 +1,8 @@
+%h1
+  tweetする
+%p
+  enter a message
+
+= form_tag({:action => "update"}, {:method => "post"}) do
+  = text_field_tag(:message)
+  = submit_tag("Submit")

@@ -1,0 +1,12 @@
+/Users/hottaryoto/.rbenv/versions/2.2.0/bin/ruby -r ./siteconf20150403-77692-wglm06.rb extconf.rb 
+creating Makefile
+
+make "DESTDIR=" clean
+
+make "DESTDIR="
+compiling ruby_http_parser.c
+compiling ryah_http_parser.c
+linking shared-object ruby_http_parser.bundle
+
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 ruby_http_parser.bundle ./.gem.20150403-77692-1ou1hi4

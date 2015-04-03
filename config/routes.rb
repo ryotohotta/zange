@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  get "/auth/:provider/callback" => "users#callback"
+  get "tweet/input"
+  post "tweet/update"
+
   resource :registrations, only: [:new, :create]
   resource :sessions, only: [:new, :create, :destroy]
 
@@ -12,6 +16,7 @@ Rails.application.routes.draw do
   end
 
   resources :users
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
