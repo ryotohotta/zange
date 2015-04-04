@@ -20,7 +20,10 @@
       = div_for @articles, class: "timeline-item" do |article|
         .media.table
           .media-name.center
-            = link_to article.user.name, user_path(article.user)
+            - if logged_in?
+              = link_to article.user.name, user_path(article.user)
+            - else
+              = link_to article.user.name, root_url
           .media-body.middle
             .media-body-zange
               .media-category
@@ -32,22 +35,35 @@
                 =image_tag("promise.png")
                 Chigiri
               %p= article.solution
-          .media-bottom
-            .media-next.center
-              =link_to '続きを読む', article
-            =link_to article_cheers_path(article), method: :post do
-              .red-btn.float-left
-                .media-cheer
-                  %i.fa.fa-bullhorn
-                    応援する!
-            .media-nums.float-right
-              %i.fa.fa-bullhorn.float-left
-                = article.cheers.length
-              %i.fa.fa-check-square.float-left
-                = article.completions.length
-              %i.fa.fa-comment-o.float-left
-                = article.comments.length
-          .clear
+          - if logged_in?
+            .media-bottom
+              .media-next.center
+                =link_to '続きを読む', article
+              =link_to article_cheers_path(article), method: :post do
+                .red-btn.float-left
+                  .media-cheer
+                    %i.fa.fa-bullhorn
+                      応援する!
+              .media-nums.float-right
+                %i.fa.fa-bullhorn.float-left
+                  = article.cheers.length
+                %i.fa.fa-check-square.float-left
+                  = article.completions.length
+                %i.fa.fa-comment-o.float-left
+                  = article.comments.length
+            .clear
+          - else
+            .media-bottom
+              .media-next.center
+                =link_to "無料登録して続きを読む", root_url
+              .media-nums.float-right
+                %i.fa.fa-bullhorn.float-left
+                  = article.cheers.length
+                %i.fa.fa-check-square.float-left
+                  = article.completions.length
+                %i.fa.fa-comment-o.float-left
+                  = article.comments.length
+
 
 
 

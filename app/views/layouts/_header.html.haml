@@ -14,5 +14,6 @@
 						%li= link_to "設定", edit_user_path(current_user)
 						%li= link_to "ログアウト", sessions_path, method: :delete
 				- else
+					.registration= link_to "無料登録", root_url
 					.signup= link_to "ログイン", new_sessions_path
 			.clear
