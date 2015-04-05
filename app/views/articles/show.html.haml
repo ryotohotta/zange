@@ -6,7 +6,7 @@
       - if logged_in?
         %ul.table
           %li.media-theme.float-left
-            #{current_user.name} のzangeとchigiri
+            #{@article.user.name} のzangeとchigiri
           %li.float-right
             .btn-word
             = link_to '編集する', edit_article_path(@article)
